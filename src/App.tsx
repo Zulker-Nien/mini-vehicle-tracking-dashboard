@@ -62,7 +62,7 @@ const App = () => {
       </Grid.Col>
       <Grid.Col lg={10} md={12}>
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard {...dataProps} />} />
           <Route path="/vehicles" element={<Vehicle {...dataProps} />} />
           <Route path="/analytics" element={<Analytics {...dataProps} />} />

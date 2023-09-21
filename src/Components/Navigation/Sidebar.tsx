@@ -91,7 +91,7 @@ export default function Sidebar() {
       className={cx(classes.link, {
         [classes.linkActive]: activeLink === link,
       })}
-      to={link}
+      to={link === "Home" ? "/" : link}
       onClick={() => {
         setActiveLink(link);
       }}
