@@ -1,49 +1,9 @@
 import { useState } from "react";
-import {
-  createStyles,
-  Table,
-  ScrollArea,
-  rem,
-  Group,
-  Button,
-} from "@mantine/core";
+import { Table, ScrollArea, Group } from "@mantine/core";
 import { TrackingDataProps } from "../utils";
 
 import { IconEdit, IconTrash } from "@tabler/icons-react";
-
-const useStyles = createStyles((theme) => ({
-  header: {
-    position: "sticky",
-    top: 0,
-    backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
-    transition: "box-shadow 150ms ease",
-    zIndex: 3000,
-    "&::after": {
-      content: '""',
-      position: "absolute",
-      left: 0,
-      right: 0,
-      bottom: 0,
-      borderBottom: `${rem(1)} solid ${
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[3]
-          : theme.colors.gray[2]
-      }`,
-    },
-  },
-
-  scrolled: {
-    boxShadow: theme.shadows.sm,
-  },
-  icon: {
-    cursor: "pointer",
-    opacity: "0.5 ",
-    "&:hover": {
-      opacity: "1",
-    },
-  },
-}));
+import { tableVehicles } from "./Vehicles.styles";
 
 export default function TableVehicle(props: {
   data: TrackingDataProps[];
@@ -51,7 +11,7 @@ export default function TableVehicle(props: {
   setClickedVehicle: (value: TrackingDataProps[]) => void;
 }) {
   const { data, setPopup, setClickedVehicle } = props;
-  const { classes, cx } = useStyles();
+  const { classes, cx } = tableVehicles();
   const [scrolled, setScrolled] = useState(false);
 
   const rows = data.map((row) => (

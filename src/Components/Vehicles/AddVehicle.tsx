@@ -1,32 +1,20 @@
 import { useForm } from "@mantine/form";
-import {
-  NumberInput,
-  TextInput,
-  Button,
-  Box,
-  createStyles,
-  rem,
-} from "@mantine/core";
+import { TextInput, Button, Box } from "@mantine/core";
 import { TrackingDataProps } from "../utils";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const useStyles = createStyles((theme) => ({
-  container: {
-    width: "80%",
-  },
-}));
+import { addVehicles } from "./Vehicles.styles";
 
 export default function AddVehicle(props: {
   currentVehicle: TrackingDataProps[];
   setPopup: (value: boolean) => void;
 }) {
   const { currentVehicle, setPopup } = props;
-  const { classes, cx } = useStyles();
+  const { classes } = addVehicles();
   const notify = () =>
     toast.success("Vehicle information updated successfully!", {
       position: "top-center",
-      autoClose: 3000, // Close the notification after 3 seconds
+      autoClose: 3000,
     });
 
   const handleSubmit = () => {
@@ -35,7 +23,7 @@ export default function AddVehicle(props: {
   };
 
   const initialValues = {
-    driverName: currentVehicle[0]?.driverName || "", // Use empty string if undefined
+    driverName: currentVehicle[0]?.driverName || "",
     vehicleName: currentVehicle[0]?.vehicleName || "",
     vehicleType: currentVehicle[0]?.vehicleType || "",
   };

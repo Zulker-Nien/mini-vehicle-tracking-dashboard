@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -36,7 +35,6 @@ export const options = {
 };
 
 const DistanceChart = (props: { data: TrackingDataProps[] }) => {
-  // Extract vehicle names and distanceTotal from props.data
   const labels = props.data.map((trackingData) => trackingData.driverName);
   const distanceData = props.data.map(
     (trackingData) => trackingData.distanceTotal

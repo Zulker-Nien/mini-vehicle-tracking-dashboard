@@ -1,35 +1,19 @@
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "./Pages/Dashboard";
-import Home from "./Pages/Home";
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import Home from "./Pages/Home/Home";
 import Sidebar from "./Components/Navigation/Sidebar";
-import { Grid, createStyles } from "@mantine/core";
-import Vehicle from "./Pages/Vehicle";
+import { Grid } from "@mantine/core";
+import Vehicle from "./Pages/Vehicle/Vehicle";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { TrackingDataProps } from "./Components/utils";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Analytics from "./Pages/Analytics";
-
-const useStyles = createStyles(() => ({
-  gridMain: {
-    margin: 0,
-    padding: 0,
-    height: "100%",
-    width: "100%",
-    maxHeight: "100vh",
-    display: "flex",
-    // overflow: "hidden",
-  },
-  gridCol: {
-    margin: 0,
-    padding: 0,
-    zIndex: 3000,
-  },
-}));
+import Analytics from "./Pages/Analytics/Analytics";
+import { appStyles } from "./App.styles";
 
 const App = () => {
-  const { classes } = useStyles();
+  const { classes } = appStyles();
 
   const [data, setData] = useState<TrackingDataProps[]>([]);
   async function fetchData() {
@@ -37,9 +21,11 @@ const App = () => {
       setData(response.data);
     });
   }
+
   useEffect(() => {
     fetchData();
   }, []);
+
   const dataProps = {
     data,
   };

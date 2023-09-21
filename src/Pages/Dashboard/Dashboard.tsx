@@ -3,50 +3,21 @@ import {
   Grid,
   Group,
   TextInput,
-  createStyles,
   useMantineTheme,
   SegmentedControl,
   Center,
-  LoadingOverlay,
   ActionIcon,
   Container,
 } from "@mantine/core";
 import { IconArrowLeft, IconArrowRight, IconSearch } from "@tabler/icons-react";
-import VehicleCard from "../Components/Vehicles/VehicleCard";
-import Map from "../Components/Map/Map";
-import { TrackingDataProps } from "../Components/utils";
-
-const gridStyles = createStyles((theme) => ({
-  gridMain: {
-    margin: 0,
-    padding: 0,
-    height: "100%",
-    width: "100%",
-    maxHeight: "100vh",
-    display: "flex",
-  },
-  gridColLeft: {
-    height: "98vh",
-  },
-  search: {},
-  vehicleList: {
-    height: "92vh",
-    marginTop: "10px",
-    overflow: "scroll",
-    padding: 0,
-    borderTop: "1px solid silver",
-  },
-  gridColRight: {
-    height: "100%",
-    overflow: "hidden",
-    maxHeight: "98.5vh",
-    margin: 0,
-  },
-}));
+import VehicleCard from "../../Components/Vehicles/VehicleCard";
+import Map from "../../Components/Map/Map";
+import { TrackingDataProps } from "../../Components/utils";
+import { dashboardStyles } from "./Dashboard.styles";
 
 function Dashboard(props: { data: TrackingDataProps[] }) {
   const { data } = props;
-  const { classes } = gridStyles();
+  const { classes } = dashboardStyles();
   const theme = useMantineTheme();
 
   const [searchQuery, setSearchQuery] = useState<string>("");

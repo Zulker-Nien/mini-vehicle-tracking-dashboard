@@ -1,19 +1,7 @@
 import React from "react";
-import {
-  RingProgress,
-  Text,
-  SimpleGrid,
-  Paper,
-  Center,
-  Group,
-  rem,
-} from "@mantine/core";
+import { RingProgress, Text, Paper, Center, Group, rem } from "@mantine/core";
 import { IconArrowUpRight, IconArrowDownRight } from "@tabler/icons-react";
-import { TrackingDataProps } from "../utils";
-
-interface Icons {
-  [key: string]: React.FC<React.SVGProps<SVGSVGElement>>;
-}
+import { Icons, TrackingDataProps } from "../utils";
 
 const icons: Icons = {
   up: IconArrowUpRight,

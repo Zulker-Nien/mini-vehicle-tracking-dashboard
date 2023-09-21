@@ -42,3 +42,7 @@ export interface ThProps {
   sorted: boolean;
   onSort(): void;
 }
+
+export interface Icons {
+  [key: string]: React.FC<React.SVGProps<SVGSVGElement>>;
+}

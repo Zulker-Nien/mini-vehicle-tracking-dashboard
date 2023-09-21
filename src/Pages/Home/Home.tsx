@@ -2,41 +2,18 @@ import {
   Title,
   SimpleGrid,
   Text,
-  Button,
   ThemeIcon,
   Grid,
   rem,
-  createStyles,
   Container,
   Code,
-  Box,
   Badge,
 } from "@mantine/core";
 import { IconSquareRoundedPlusFilled } from "@tabler/icons-react";
 import { IconDashboard, IconReportAnalytics } from "@tabler/icons-react";
-
-const gridStyles = createStyles((theme) => ({
-  wrapper: {
-    padding: "calc(var(--mantine-spacing-xl) * 2) var(--mantine-spacing-xl)",
-  },
-
-  title: {
-    fontFamily: "Greycliff CF, var(--mantine-font-family)",
-    fontSize: rem("50px"),
-    fontWeight: 900,
-    lineHeight: 1.1,
-    marginBottom: "var(--mantine-spacing-md)",
-    color: "light-dark(var(--mantine-color-black), var(--mantine-color-white))",
-  },
-}));
+import { homeStyles } from "./Home.styles";
 
 const features = [
-  {
-    icon: IconDashboard,
-    title: "Integrated with a dashboard",
-    description:
-      "The dashboard has a map along with a scrollable & clickable list of vehicles which would direct you to the longitude and latitude of their location. Search for specific vehicles and filter using their current status.",
-  },
   {
     icon: IconReportAnalytics,
     title: "View the statistics",
@@ -49,10 +26,16 @@ const features = [
     description:
       "You can add new vehicles to the list. Add the vehicle's name as well as their type. Edit the vehicles as well. The MockApi doesn't let us post or delete the api. But I added a demo prototype.",
   },
+  {
+    icon: IconDashboard,
+    title: "Integrated with a dashboard",
+    description:
+      "The dashboard has a map along with a scrollable & clickable list of vehicles which would direct you to the longitude and latitude of their location. Search for specific vehicles and filter using their current status. Note: MockApi pulls longitude and latitude data randomly, hence the vehicles in the ocean & longitude and Latitude data in vehicle card instead of address.. Other apis require payment for street longitude and latitude data as well as reverse geolocation for address as per my knowledge.",
+  },
 ];
 
 export default function FeaturesTitle() {
-  const { classes } = gridStyles();
+  const { classes } = homeStyles();
   const items = features.map((feature) => (
     <div key={feature.title}>
       <ThemeIcon
@@ -109,7 +92,7 @@ export default function FeaturesTitle() {
             <Code block>{code}</Code>
           </SimpleGrid>
         </Grid.Col>
-        <Badge color="blue" size="xl">
+        <Badge color="blue" size="xl" my="xl">
           Click from the sidebar to start
         </Badge>
       </Grid>
