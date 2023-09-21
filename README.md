@@ -1,46 +1,75 @@
-# Getting Started with Create React App
+# Vehicle Tracking App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Vehicle Tracking App is a web application built with **React**, **TypeScript**, **Mantine UI**, **Chart.js**, **Leaflet.js**, and **Axios**. It utilizes the power of **MockAPI** to leverage curated data specifically tailored for this project. This app allows users to track and manage vehicles efficiently, providing various features for a seamless experience.
 
-## Available Scripts
+## Demo
 
-In the project directory, you can run:
+You can access the live demo of the Vehicle Tracking App here: [Demo Link](https://mini-vehicle-tracking-dashboard.vercel.app/)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 1. Dashboard
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The Dashboard is the central feature of the app, offering a comprehensive view of vehicle tracking data. It includes:
 
-### `npm test`
+- **Map**: The dashboard displays a map that shows the real-time positions of vehicles. Each vehicle is represented by a marker on the map.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Search by Car Name**: Users can search for specific vehicles by entering the car's name in the search bar. The app filters the displayed vehicles based on the search query.
 
-### `npm run build`
+- **Filter by Status**: Users can filter vehicles based on their status, which can be "Idle" or "Moving." This filter helps users focus on vehicles that match their criteria.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Interactive Map**: When users click on a vehicle card in the list, the app highlights the corresponding marker on the map, making it easy to identify a specific vehicle's location.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. Analytics
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The Analytics section provides users with insightful statistics and visualizations related to the tracked vehicles. It includes:
 
-### `npm run eject`
+- **Charts**: Interactive charts powered by Chart.js visualize various vehicle-related data, such as vehicle status distribution, distances traveled, or fuel consumption.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- **Statistics**: Detailed statistics and key performance indicators (KPIs) are presented, offering valuable insights into the fleet's performance.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 3. CRUD Vehicle Management (Fake but Functional)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The app provides the functionality for managing vehicles, even though the data is not persisted and is only simulated. This includes:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **Add Vehicles**: Users can add new vehicles to the system, providing essential details such as vehicle name, type, status, and initial location. Please note that the data is not permanently stored.
 
-## Learn More
+- **View Vehicle Details**: Detailed information about each vehicle is accessible, providing users with a comprehensive overview of the vehicle's properties and status.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Update Vehicle Information**: Users can edit and update vehicle details, including name, type, status, and location. These changes are temporary and will not persist beyond the current session.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Delete Vehicles**: When necessary, users can remove vehicles from the system. However, this action is not permanent and will only affect the current session's data.
+
+The fake but functional CRUD functionality is designed to demonstrate the app's capabilities and user interface for managing vehicles.
+
+## Getting Started
+
+To run the Vehicle Tracking App locally, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Install the required dependencies using `npm install` or `yarn install`.
+3. Start the development server using `npm start` or `yarn start`.
+4. Access the app in your web browser at `http://localhost:3000`.
+
+## Technologies Used
+
+- **React**: A popular JavaScript library for building user interfaces.
+- **TypeScript**: A statically typed superset of JavaScript for enhanced code quality.
+- **Mantine UI**: A modern React component library for building user interfaces.
+- **Chart.js**: A JavaScript library for creating interactive charts and graphs.
+- **Leaflet.js**: An open-source JavaScript library for mobile-friendly interactive maps.
+- **Axios**: A promise-based HTTP client for making API requests.
+- **MockAPI**: A platform for creating mock APIs to simulate server interactions.
+
+## Contributors
+
+- Zulker Nien: [Your GitHub Profile](https://github.com/Zulker-Nien)
+
+## License
+
+This project is licensed under the **MIT License** (LICENSE).
+
+## Acknowledgments
+
+- Special thanks to [MockAPI](https://www.mockapi.io/) for providing a platform to simulate API interactions.
+- We appreciate the open-source communities behind React, TypeScript, Mantine UI, Chart.js, Leaflet.js, and Axios for their invaluable contributions.
