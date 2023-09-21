@@ -65,10 +65,6 @@ To run the Vehicle Tracking App locally, follow these steps:
 
 - Zulker Nien: [Your GitHub Profile](https://github.com/Zulker-Nien)
 
-## License
-
-This project is licensed under the **MIT License** (LICENSE).
-
 ## Acknowledgments
 
 - Special thanks to [MockAPI](https://www.mockapi.io/) for providing a platform to simulate API interactions.
