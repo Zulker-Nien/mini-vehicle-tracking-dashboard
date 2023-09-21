@@ -21,44 +21,39 @@ function Dashboard(props: { data: TrackingDataProps[] }) {
   const theme = useMantineTheme();
 
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [status, setStatus] = useState<string>("All");
+  const [segmentControlValue, setSegmentControlValue] = useState<string>("All");
 
   const [longStart, setLongStart] = useState<TrackingDataProps[] | null>();
   const [latStart, setLatStart] = useState<TrackingDataProps[] | null>();
-
   const [longEnd, setLongEnd] = useState<TrackingDataProps[] | null>();
   const [latEnd, setLatEnd] = useState<TrackingDataProps[] | null>();
 
-  const [vehicleCardActive, setVehicleCardActive] = useState<boolean>(false);
+  const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null);
+  const [mapStatus, setMapStatus] = useState<string>("");
 
-  const [activeCardIndex, setActiveCardIndex] = useState<
-    boolean | null | TrackingDataProps[] | number
-  >(null);
-
-  const handleCardClick = (index: number | null) => {
+  const handleCardClick = (
+    index: number,
+    startLongitude: TrackingDataProps[] | null,
+    startLatitude: TrackingDataProps[] | null,
+    endLongitude: TrackingDataProps[] | null,
+    endLatitude: TrackingDataProps[] | null,
+    status: TrackingDataProps[] | null
+  ) => {
     setActiveCardIndex(index);
+    setLongStart(startLongitude);
+    setLatStart(startLatitude);
+    setLongEnd(endLongitude);
+    setLatEnd(endLatitude);
+    setMapStatus(status ? "Moving" : "Idle");
   };
 
-  const handleVehicleClicked = (
-    longStart: TrackingDataProps[] | null,
-    latStart: TrackingDataProps[] | null,
-    status: boolean,
-    longEnd: TrackingDataProps[] | null,
-    latEnd: TrackingDataProps[] | null,
-    active: boolean
-  ) => {
-    setLongStart(longStart);
-    setLatStart(latStart);
-    setStatus(status ? "Moving" : "Idle");
-    setLongEnd(longEnd);
-    setLatEnd(latEnd);
-    setVehicleCardActive(!vehicleCardActive);
-    setActiveCardIndex(active ? null : longStart); // Toggle active card index
+  const handleSegmentControlChange = (value: string) => {
+    setSegmentControlValue(value);
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
-    setActiveCardIndex(null); // Clear the active card when searching
+    setActiveCardIndex(null);
   };
 
   const filteredData = data
@@ -68,8 +63,10 @@ function Dashboard(props: { data: TrackingDataProps[] }) {
           searchQuery.toLowerCase()
         );
         const matchesStatus =
-          status === "All" ||
-          (status === "Moving" ? item.vehicleStatus : !item.vehicleStatus);
+          segmentControlValue === "All" ||
+          (segmentControlValue === "Moving"
+            ? item.vehicleStatus
+            : !item.vehicleStatus);
 
         return matchesSearchQuery && matchesStatus;
       })
@@ -106,24 +103,24 @@ function Dashboard(props: { data: TrackingDataProps[] }) {
             radius="xl"
             size="md"
             data={["All", "Idle", "Moving"]}
-            value={status}
-            onChange={(value) => setStatus(value)}
+            value={segmentControlValue}
+            onChange={handleSegmentControlChange}
           />
         </Group>
         <Container className={classes.vehicleList}>
           {filteredData.length > 0 ? (
-            filteredData.map((item: any) => {
+            filteredData.map((item: any, index: number) => {
               const uniqueKey = `${item.vehicleName}-${item.vehicleType}`;
               return (
                 <div
                   onClick={() =>
-                    handleVehicleClicked(
+                    handleCardClick(
+                      index,
                       item.startLatitude,
                       item.startLongitude,
-                      item.vehicleStatus,
-                      item.endLongitude,
                       item.endLatitude,
-                      true
+                      item.endLongitude,
+                      item.vehicleStatus
                     )
                   }
                   key={uniqueKey}
@@ -134,14 +131,13 @@ function Dashboard(props: { data: TrackingDataProps[] }) {
                     status={item.vehicleStatus}
                     longitude={item.startLongitude}
                     latitude={item.startLatitude}
-                    active={item.id === activeCardIndex}
-                    onClick={() => handleCardClick(item.id)}
+                    active={index === activeCardIndex}
+                    onClick={() => setActiveCardIndex(index)}
                   />
                 </div>
               );
             })
           ) : (
-            // Render a message when there are no matching vehicles
             <Center>
               <p>No matching vehicles found</p>
             </Center>
@@ -152,7 +148,7 @@ function Dashboard(props: { data: TrackingDataProps[] }) {
         <Map
           longStart={longStart || []}
           latStart={latStart || []}
-          status={status === "Moving"}
+          status={mapStatus === "Moving"}
           longEnd={longEnd || []}
           latEnd={latEnd || []}
         />
